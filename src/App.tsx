@@ -1,14 +1,12 @@
 import { Route, Routes } from "react-router-dom";
-import { ProductsPage } from "./pages/products/ProductsPage";
-import { MoviesPage } from "./pages/movies/MoviesPage";
-import { IndexPage } from "./pages/index/IndexPage";
-import { NavBar } from "./components/ui/NavBar";
 import "./App.css";
+import { Footer, NavBar } from "./components";
+import { IndexPage, MoviesPage, ProductsPage } from "./pages";
 
 function App() {
   return (
     <div className="container">
-      <header>
+      <header className="mb-1">
         <NavBar />
       </header>
       <main>
@@ -20,7 +18,9 @@ function App() {
           </Routes>
         </section>
       </main>
-      <footer></footer>
+      <footer>
+        <Footer />
+      </footer>
     </div>
   );
 }
