@@ -10,7 +10,7 @@ export const NavBar = () => {
   return (
     <nav className="navbar bg-dark border-bottom border-body navbar-expand-sm" data-bs-theme="dark">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
+        <a className="navbar-brand" href="/">
           CJJC
         </a>
         <button

@@ -1,3 +1,5 @@
 export const IndexPage = () => {
-  return <h1>IndexPage</h1>;
+  console.log({ node_env: process.env.NODE_ENV });
+
+  return <h1>Index Page</h1>;
 };

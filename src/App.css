@@ -1,0 +1,16 @@
+.cuerpo {
+    min-height: 600px;
+}
+
+.produt-image {
+    width: 100px;
+}
+
+.img-mant {
+    width: 15px;
+    height: auto;
+}
+
+.spinner-container {
+    min-height: 600px;
+}
