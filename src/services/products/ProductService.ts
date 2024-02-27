@@ -2,11 +2,11 @@ import { addProduct, deleteProduct, getProducts, getProductsById, updateProduct 
 import { Product } from "../../interfaces";
 
 export const ProductService = {
-  getProducts: () => {
-    return getProducts();
+  getProducts: async () => {
+    return await getProducts();
   },
-  getProductById: (id: string) => {
-    return getProductsById(id);
+  getProductById: async (id: string) => {
+    return await getProductsById(id);
   },
   deleteProduct: (id: string) => {
     return deleteProduct(id);

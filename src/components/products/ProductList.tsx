@@ -8,25 +8,26 @@ export const ProductList = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loaded, setLoaded] = useState(false);
 
-  async function cargaProductos() {
-    const productos = await ProductService.getProducts();
-    setProducts(productos);
-    setLoaded(true);
-  }
-
   useEffect(() => {
-    setTimeout(() => {
-      cargaProductos();
-    }, 500);
+    async function cargaProductos() {
+      try {
+        const productos = await ProductService.getProducts();
+        setProducts(productos);
+        setLoaded(true);
+      } catch (error) {
+        console.error("Error cargando productos:", error);
+      }
+    }
+    cargaProductos();
   }, []);
 
   if (!loaded) {
     return (
       <div className="d-flex flex-column justify-content-center align-items-center spinner-container gap-3 ">
-        <div className="spinner-border text-primary" role="status">
-          <span className="visually-hidden">Loading...</span>
+        <div className="spinner-border text-primary fs-1" role="status">
+          {/* <span className="visually-hidden">Loading...</span> */}
         </div>
-        <span className="fs-5">Cargando...</span>
+        <span className="fs-2">Cargando...</span>
       </div>
     );
   }
