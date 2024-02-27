@@ -1,5 +1,5 @@
 .cuerpo {
-    min-height: 600px;
+    min-height: 800px;
 }
 
 .produt-image {
@@ -9,6 +9,12 @@
 .img-mant {
     width: 15px;
     height: auto;
+}
+
+.img-form {
+    width: 300px;
+    height: auto;
+    filter: drop-shadow(0.35rem 0.35rem 0.4rem rgba(0, 0, 0, 0.5));
 }
 
 .spinner-container {

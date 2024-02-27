@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import { Footer, NavBar, ProductList } from "./components";
-import { IndexPage, MoviesPage, ProductMant, ProductsPage } from "./pages";
+import { IndexPage, MoviesPage, ProductsPage } from "./pages";
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
           <Routes>
             <Route path="/" element={<IndexPage />} />
             <Route path="/products" element={<ProductsPage children={<ProductList />} />} />
-            <Route path="/products/:id" element={<ProductsPage children={<ProductMant />} />} />
+            {/* <Route path="/products/:id" element={<ProductsPage children={<ProductMant />} />} /> */}
             <Route path="/movies" element={<MoviesPage />} />
           </Routes>
         </section>

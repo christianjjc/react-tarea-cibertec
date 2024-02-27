@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Product } from "../../interfaces";
 import { ProductService } from "../../services";
 import { ProductRow } from "./ProductRow";
+import { BtnGeneral, Title } from "..";
 
 export const ProductList = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -16,7 +17,7 @@ export const ProductList = () => {
   useEffect(() => {
     setTimeout(() => {
       cargaProductos();
-    }, 1500);
+    }, 500);
   }, []);
 
   if (!loaded) {
@@ -32,6 +33,16 @@ export const ProductList = () => {
 
   return (
     <>
+      <div className="row">
+        <div className="col-12">
+          <Title titulo="Listado de Productos" subtitulo="En esta sección veremos la lista completa de productos." />
+        </div>
+      </div>
+      <div className="row d-flex justify-content-end pb-3">
+        <div className="col-12 col-sm-2">
+          <BtnGeneral href={"/products/new"} label={"Nuevo"} />
+        </div>
+      </div>
       <table className="table table-sm table-striped table-hover table-bordered table align-middle table-responsive">
         <thead className="table-dark">
           <tr className="text-center ">

@@ -4,7 +4,7 @@ import { Product } from "../../interfaces";
 
 const API_URL = `${environment.apiUrl}/products`;
 
-export const getProductsById = async (id: number): Promise<Product | []> => {
+export const getProductsById = async (id: string): Promise<Product> => {
   return axios.get<Product>(`${API_URL}/${id}`).then((response) => {
     return response.data;
   });
