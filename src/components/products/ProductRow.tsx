@@ -38,14 +38,18 @@ export const ProductRow = ({ product }: Props) => {
       <td>
         <img className="produt-image img-fluid " src={image} alt={title} />
       </td>
-      <td>{rating.rate}</td>
+      <td>{rating?.rate}</td>
       <td>
         <Link id={`md-${id}`} to={`/products/${id}`} className="btn" onClick={() => {}}>
           <img src={imgModify} className="img-mant" alt="Eliminar" />
         </Link>
       </td>
       <td className="text-dang">
-        <Link id={`dl-${id}`} to={`/`} className="btn" onClick={(e) => handleEliminar(id!.toString(), title, e)}>
+        <Link
+          id={`dl-${id}`}
+          to={`/products/`}
+          className="btn"
+          onClick={(e) => handleEliminar(id!.toString(), title, e)}>
           <img src={imgTrash} className="img-mant" alt="Eliminar" />
         </Link>
       </td>

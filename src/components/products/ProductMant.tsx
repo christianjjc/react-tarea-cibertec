@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Product } from "../../interfaces";
 import { ProductService } from "../../services";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import clsx from "clsx";
+import { ErrorMensaje } from "..";
 
 interface FormInputs {
   title: string;
@@ -22,7 +23,7 @@ export const ProductMant = () => {
   const {
     handleSubmit,
     register,
-    formState: { isValid, errors },
+    formState: { errors },
     setValue,
   } = useForm<FormInputs>();
 
@@ -53,30 +54,40 @@ export const ProductMant = () => {
     }
   }, [product, setValue]);
 
-  const onSubmit = async (data: FormInputs) => {
-    console.log(data);
-    /*const { images, ...productToSave } = data;
-    const formData = new FormData(); //*crea un objetoformulario de javascript
-    if (product.id) {
-      formData.append("id", product.id ?? "");
-    }
-    formData.append("title", productToSave.title ?? "");
-    formData.append("slug", productToSave.slug ?? "");
-    formData.append("description", productToSave.description ?? "");
-    formData.append("price", productToSave.price.toString() ?? "");
-    formData.append("inStock", productToSave.inStock.toString() ?? "");
-    formData.append("sizes", productToSave.sizes.toString() ?? "");
-    formData.append("tags", productToSave.tags);
-    formData.append("categoryId", productToSave.categoryId);
-    formData.append("gender", productToSave.gender);
+  const onSubmit: SubmitHandler<FormInputs> = async (data: FormInputs) => {
+    console.log({ data });
 
-    if (images) {
-      for (let i = 0; i < images.length; i++) {
-        formData.append("images", images[i]);
+    const { ...productToSave } = data;
+
+    const formData = new FormData();
+
+    if (id !== "new") {
+      formData.append("id", id ?? "");
+    }
+
+    formData.append("title", productToSave.title ?? "");
+    formData.append("price", productToSave.price.toString() ?? 0);
+    formData.append("description", productToSave.description ?? "");
+    formData.append("category", productToSave.category ?? "");
+    formData.append("image", productToSave.image ?? "");
+
+    console.log({ formData });
+
+    if (id?.toLowerCase() === "new") {
+      const producto = ProductService.addProduct(formData);
+      console.log(producto);
+      return producto;
+    } else {
+      try {
+        const producto = ProductService.updateProduct(formData);
+        console.log(producto);
+        return producto;
+      } catch (error) {
+        console.log({ error_modificar_prod_en_form: error });
       }
     }
 
-    console.log({ formData });
+    /* 
     const { ok, product: updatedProduct } = await createUpdateProduct(formData);
     console.log(ok);
 
@@ -96,40 +107,44 @@ export const ProductMant = () => {
             <div className="row">
               <div>Producto id:{id}</div>
               <div className="d-flex flex-column  my-2">
-                <span>Title</span>
+                <span>Título:</span>
                 <input
                   type="text"
-                  className={clsx("p-2 border rounded-md", {
+                  className={clsx("p-2 border rounded-md form-control ", {
                     "border-danger": errors.title,
                   })}
                   id="title"
                   autoFocus
                   {...register("title", { required: true })}
                 />
+                <ErrorMensaje atributo="Título" error={errors.title} />
               </div>
               <div className="d-flex flex-column  my-2">
-                <span>Price</span>
+                <span>Precio:</span>
                 <input
                   type="text"
-                  className={clsx("p-2 border rounded-md", {
+                  maxLength={9}
+                  className={clsx("p-2 border rounded-md form-control", {
                     "border-danger": errors.price,
                   })}
                   id="price"
-                  {...register("price", { required: true })}
+                  {...register("price", { required: true, min: 1 })}
                 />
+                <ErrorMensaje atributo="Precio" error={errors.price} minimo={1} />
               </div>
               <div className="d-flex flex-column  my-2">
-                <span>Description</span>
+                <span>Descripción:</span>
                 <textarea
-                  className={clsx("p-2 border rounded-md", {
+                  className={clsx("p-2 border rounded-md form-control", {
                     "border-danger": errors.description,
                   })}
                   id="description"
                   {...register("description", { required: true })}
                 />
+                <ErrorMensaje atributo="Descripción" error={errors.description} />
               </div>
               <div className="d-flex flex-column  my-2">
-                <span>Category</span>
+                <span>Categoría:</span>
                 <select
                   className={clsx("p-2 border rounded-md form-select ", {
                     "border-danger": errors.category,
@@ -142,20 +157,22 @@ export const ProductMant = () => {
                     </option>
                   ))}
                 </select>
+                <ErrorMensaje atributo="Categoría" error={errors.category} />
               </div>
               <div className="d-flex flex-column  my-2">
-                <span>Image</span>
+                <span>Imagen:</span>
                 <input
-                  type="text"
-                  className={clsx("p-2 border rounded-md form-select ", {
+                  type="url"
+                  className={clsx("p-2 border rounded-md form-control", {
                     "border-danger": errors.image,
                   })}
                   id="image"
                   {...register("image", { required: true })}
                 />
               </div>
+              <ErrorMensaje atributo="Imagen" error={errors.image} />
             </div>
-            <div className="d-flex gap-2">
+            <div className="d-flex gap-2 my-3">
               <button type="submit" className="btn btn-primary">
                 Guardar
               </button>

@@ -1,5 +1,5 @@
 import { addProduct, deleteProduct, getProducts, getProductsById, updateProduct } from "../../actions";
-import { Product } from "../../interfaces";
+//import { Product } from "../../interfaces";
 
 export const ProductService = {
   getProducts: () => {
@@ -11,10 +11,14 @@ export const ProductService = {
   deleteProduct: (id: string) => {
     return deleteProduct(id);
   },
-  addProduct: (product: Product) => {
-    return addProduct(product);
+  addProduct: (formData: FormData) => {
+    return addProduct(formData);
   },
-  updateProduct: (product: Product) => {
-    return updateProduct(product);
+  updateProduct: (formData: FormData) => {
+    try {
+      return updateProduct(formData);
+    } catch (error) {
+      console.log({ error_servicio_modificar: error });
+    }
   },
 };

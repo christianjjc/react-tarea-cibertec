@@ -4,3 +4,4 @@ export * from "./ui/Title";
 export * from "./ui/BtnGeneral";
 export * from "./products/ProductList";
 export * from "./products/ProductMant";
+export * from "./products/ui/ErrorMensaje";
