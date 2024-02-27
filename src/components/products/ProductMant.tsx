@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { Product } from "../../interfaces";
 import { ProductService } from "../../services";
 import { useForm } from "react-hook-form";
+import clsx from "clsx";
 
 interface FormInputs {
   title: string;
@@ -21,7 +22,7 @@ export const ProductMant = () => {
   const {
     handleSubmit,
     register,
-    formState: { isValid },
+    formState: { isValid, errors },
     setValue,
   } = useForm<FormInputs>();
 
@@ -95,44 +96,45 @@ export const ProductMant = () => {
             <div className="row">
               <div>Producto id:{id}</div>
               <div className="d-flex flex-column  my-2">
-                <span>title</span>
+                <span>Title</span>
                 <input
                   type="text"
-                  className="p-2 border rounded-md bg-gray-200"
+                  className={clsx("p-2 border rounded-md", {
+                    "border-danger": errors.title,
+                  })}
                   id="title"
-                  //defaultValue={product?.title}
+                  autoFocus
                   {...register("title", { required: true })}
                 />
               </div>
               <div className="d-flex flex-column  my-2">
-                <span>price</span>
+                <span>Price</span>
                 <input
                   type="text"
-                  className="p-2 border rounded-md bg-gray-200"
+                  className={clsx("p-2 border rounded-md", {
+                    "border-danger": errors.price,
+                  })}
                   id="price"
-                  //defaultValue={product?.price}
                   {...register("price", { required: true })}
                 />
               </div>
               <div className="d-flex flex-column  my-2">
-                <span>description</span>
+                <span>Description</span>
                 <textarea
-                  className="p-2 border rounded-md bg-gray-200"
+                  className={clsx("p-2 border rounded-md", {
+                    "border-danger": errors.description,
+                  })}
                   id="description"
-                  //defaultValue={product?.description}
                   {...register("description", { required: true })}
                 />
               </div>
               <div className="d-flex flex-column  my-2">
-                <span>category</span>
-                {/* <input
-                  type="text"
-                  className="p-2 border rounded-md bg-gray-200"
-                  id="category"
-                  //defaultValue={product?.category}
-                  {...register("category", { required: true })}
-                /> */}
-                <select className="form-select" {...register("category", { required: true })}>
+                <span>Category</span>
+                <select
+                  className={clsx("p-2 border rounded-md form-select ", {
+                    "border-danger": errors.category,
+                  })}
+                  {...register("category", { required: true })}>
                   <option value="">[Seleccione]</option>
                   {categories.map((c) => (
                     <option key={c} value={c}>
@@ -145,9 +147,10 @@ export const ProductMant = () => {
                 <span>Image</span>
                 <input
                   type="text"
-                  className="p-2 border rounded-md bg-gray-200"
+                  className={clsx("p-2 border rounded-md form-select ", {
+                    "border-danger": errors.image,
+                  })}
                   id="image"
-                  //defaultValue={product?.image}
                   {...register("image", { required: true })}
                 />
               </div>
