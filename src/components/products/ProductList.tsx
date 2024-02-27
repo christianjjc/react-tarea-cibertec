@@ -8,16 +8,17 @@ export const ProductList = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loaded, setLoaded] = useState(false);
 
-  useEffect(() => {
-    async function cargaProductos() {
-      try {
-        const productos = await ProductService.getProducts();
-        setProducts(productos);
-        setLoaded(true);
-      } catch (error) {
-        console.error("Error cargando productos:", error);
-      }
+  async function cargaProductos() {
+    try {
+      const productos = await ProductService.getProducts();
+      setProducts(productos);
+      setLoaded(true);
+    } catch (error) {
+      console.error("Error cargando productos:", error);
     }
+  }
+
+  useEffect(() => {
     cargaProductos();
   }, []);
 
