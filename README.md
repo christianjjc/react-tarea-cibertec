@@ -11,7 +11,7 @@
 npm install
 ```
 
-3. Ejecuta el json-server con el json cargado en la carpeta API
+3. Ejecuta el siguiente comando para levantar la API
 
 ```bash
 npm run server
@@ -22,6 +22,10 @@ npm run server
 ```bash
 npm run dev
 ```
+
+5. Entrarás al siguiente enlace (si no has cambiado el puerto manualmente):
+
+- Link [http://localhost:5173/](http://localhost:5173)
 
 # React + TypeScript + Vite
 

@@ -134,7 +134,7 @@ export const MovieMant = () => {
                   id="price"
                   {...register("year", { required: true, min: 1900 })}
                 />
-                <ErrorMensaje atributo="Año" error={errors.year} minimo={1} />
+                <ErrorMensaje atributo="Año" error={errors.year} minimo={1900} />
               </div>
               <div className="d-flex flex-column  my-2">
                 <span>Tipo:</span>
