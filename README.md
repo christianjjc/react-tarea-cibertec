@@ -1,3 +1,7 @@
+# Tomar en cuenta
+
+1. Desarrollado bajo NodeJS versión 20
+
 # Pasos para iniciral el Proyecto
 
 1. Clona el repositorio
@@ -18,12 +22,6 @@ npm run server
 ```bash
 npm run dev
 ```
-
-.
-.
-.
-.
-.
 
 # React + TypeScript + Vite
 
