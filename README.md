@@ -1,3 +1,30 @@
+# Pasos para iniciral el Proyecto
+
+1. Clona el repositorio
+2. Instala las dependencias
+
+```bash
+npm install
+```
+
+3. Ejecuta el json-server con el json cargado en la carpeta API
+
+```bash
+npm run server
+```
+
+4. Abre otra terminal e inicia el proyecto
+
+```bash
+npm run dev
+```
+
+.
+.
+.
+.
+.
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
@@ -17,12 +44,12 @@ If you are developing a production application, we recommend updating the config
 export default {
   // other rules...
   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
+    ecmaVersion: "latest",
+    sourceType: "module",
+    project: ["./tsconfig.json", "./tsconfig.node.json"],
     tsconfigRootDir: __dirname,
   },
-}
+};
 ```
 
 - Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
