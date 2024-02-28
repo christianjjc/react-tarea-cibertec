@@ -5,6 +5,8 @@ import { ProductService } from "../../services";
 import { SubmitHandler, useForm } from "react-hook-form";
 import clsx from "clsx";
 import { ErrorMensaje, Title } from "..";
+import { useAppDispatch, useAppSelector } from "../../store";
+import { productoActual } from "../../store/product/productSlice";
 
 interface FormInputs {
   title: string;
@@ -17,6 +19,9 @@ interface FormInputs {
 export const ProductMant = () => {
   const [product, setProduct] = useState<Product>();
   const { id } = useParams();
+
+  const globalProduct = useAppSelector((state) => state.globalProduct.product);
+  const dispatch = useAppDispatch();
 
   const categories = ["electronics", "jewelery", "men's clothing", "women's clothing"];
 
@@ -31,6 +36,7 @@ export const ProductMant = () => {
     if (id !== "new") {
       try {
         const fetchedProduct = await ProductService.getProductById(id!);
+        dispatch(productoActual(fetchedProduct));
         setProduct(fetchedProduct);
       } catch (error) {
         console.error("Error mostrando producto:", error);
@@ -198,6 +204,15 @@ export const ProductMant = () => {
         </div>
         <div className="col">
           <img className="img-fluid img-form" src={product?.image} alt={product?.title} />
+        </div>
+      </div>
+      <div>
+        <div className="row fw-bold d-flex my-3">
+          <span className="col-6 col-md-2">Producto Global</span>
+          <span className="fw-normal col-6 col-md-10">(usando Redux)</span>
+        </div>
+        <div className="row text-start lead">
+          <pre>{JSON.stringify(globalProduct, null, " ")}</pre>
         </div>
       </div>
     </>

@@ -5,6 +5,7 @@ import { MovieService } from "../../services";
 import { SubmitHandler, useForm } from "react-hook-form";
 import clsx from "clsx";
 import { ErrorMensaje, Title } from "..";
+import { useAppSelector } from "../../store";
 
 interface FormInputs {
   title: string;
@@ -14,6 +15,8 @@ interface FormInputs {
 }
 
 export const MovieMant = () => {
+  const globalProduct = useAppSelector((state) => state.globalProduct.product); //* Probando el estado Global de Redux
+
   const [movie, setMovie] = useState<Movie>();
   const { id } = useParams();
 
@@ -102,7 +105,7 @@ export const MovieMant = () => {
     <>
       <div className="row">
         <div className="col-12">
-          <Title titulo="Mantenimiento de Productos" subtitulo="Aquí se modifica el producto." />
+          <Title titulo="Mantenimiento de Películas" subtitulo="Aquí se gestionan las películas." />
         </div>
       </div>
       <div className="row d-flex my-5">
@@ -184,6 +187,16 @@ export const MovieMant = () => {
         </div>
         <div className="col">
           <img className="img-fluid img-form" src={movie?.poster} alt={movie?.title} />
+        </div>
+      </div>
+
+      <div>
+        <div className="row fw-bold d-flex my-3">
+          <span className="col-6 col-md-2">Producto Global</span>
+          <span className="fw-normal col-6 col-md-10">(usando Redux)</span>
+        </div>
+        <div className="row text-start lead">
+          <pre>{JSON.stringify(globalProduct, null, " ")}</pre>
         </div>
       </div>
     </>

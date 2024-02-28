@@ -3,10 +3,14 @@ import { Product } from "../../interfaces";
 import { ProductService } from "../../services";
 import { ProductRow } from "./ProductRow";
 import { BtnGeneral, Title } from "..";
+import { useAppDispatch } from "../../store";
+import { resetProduct } from "../../store/product/productSlice";
 
 export const ProductList = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loaded, setLoaded] = useState(false);
+
+  const dispatch = useAppDispatch();
 
   async function cargaProductos() {
     try {
@@ -20,6 +24,11 @@ export const ProductList = () => {
 
   useEffect(() => {
     cargaProductos();
+  }, []);
+
+  useEffect(() => {
+    dispatch(resetProduct());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (!loaded) {
