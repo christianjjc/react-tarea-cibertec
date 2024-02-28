@@ -1,12 +1,12 @@
 {
   "products": [
     {
-      "id": "1",
       "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-      "price": 109.95,
+      "price": "109.95",
       "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
       "category": "men's clothing",
-      "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
+      "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+      "id": "1"
     },
     {
       "id": "2",
@@ -161,7 +161,7 @@
       "image": "https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_.jpg"
     },
     {
-      "id": 21,
+      "id": "21",
       "title": "AAAAAAAAAAAAAAAAAAAA",
       "price": 3555.3555,
       "description": "bbbb",
@@ -380,7 +380,6 @@
       "type": "movie",
       "poster": "https://m.media-amazon.com/images/M/MV5BMTkxNjUxODY3NF5BMl5BanBnXkFtZTcwMjQyMzMzMg@@._V1_SX300.jpg"
     },
-
     {
       "title": "Shaun the Sheep Movie",
       "year": "2015",
@@ -451,7 +450,6 @@
       "type": "movie",
       "poster": "https://m.media-amazon.com/images/M/MV5BNDI3MDljMTQtYzBiYS00NDk2LTlhYzUtYmM0NWIyMmZkMDZkXkEyXkFqcGdeQXVyNjk5NDA3OTk@._V1_SX300.jpg"
     },
-
     {
       "title": "DuckTales the Movie: Treasure of the Lost Lamp",
       "year": "1990",
@@ -2257,13 +2255,6 @@
       "id": "tt0460952",
       "type": "movie",
       "poster": "https://m.media-amazon.com/images/M/MV5BMTgzMzQwNjIzOV5BMl5BanBnXkFtZTcwOTg5NjU0MQ@@._V1_SX300.jpg"
-    },
-    {
-      "title": "The Best Movie 3-DE",
-      "year": "2011",
-      "id": "tt1796603",
-      "type": "movie",
-      "poster": "https://m.media-amazon.com/images/M/MV5BMDE4MjExZGEtYjQ5YS00MjdjLWFlODYtNjJiYzZiMjY3NGRjXkEyXkFqcGdeQXVyNjMwOTA1MDM@._V1_SX300.jpg"
     },
     {
       "title": "The Best Movie 3-DE",

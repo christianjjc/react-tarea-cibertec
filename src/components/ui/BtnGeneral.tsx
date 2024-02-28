@@ -7,7 +7,7 @@ interface Props {
 
 export const BtnGeneral = ({ href, label }: Props) => {
   return (
-    <Link className="btn btn-secondary w-100" to={href}>
+    <Link className="btn btn-primary w-100" to={href}>
       {label}
     </Link>
   );

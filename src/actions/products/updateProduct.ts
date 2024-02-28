@@ -15,6 +15,4 @@ export const updateProduct = async (formData: FormData) => {
   } catch (error) {
     return error;
   }
-
-  return { ok: true };
 };

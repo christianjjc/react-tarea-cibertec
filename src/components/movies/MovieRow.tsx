@@ -1,24 +1,23 @@
 import { Link } from "react-router-dom";
-import { Product } from "../../interfaces";
+import { Movie } from "../../interfaces";
 import imgTrash from "/trash3.svg";
 import imgModify from "/modify-ico.png";
-import { ProductService } from "../../services";
-import { currencyFormat } from "../../utils";
+import { MovieService } from "../../services";
 
 interface Props {
-  product: Product;
+  movie: Movie;
 }
 
-export const ProductRow = ({ product }: Props) => {
-  const { id, title, price, description, category, image } = product;
+export const MovieRow = ({ movie }: Props) => {
+  const { id, title, year, type, poster } = movie;
 
   const handleEliminar = async (id: string, title: string) => {
-    const confirmar = confirm(`¿Seguro que desea eliminar el item ${title}?`);
+    const confirmar = confirm(`¿Seguro que desea eliminar la película ${title}?`);
     if (!confirmar) return;
     try {
-      await ProductService.deleteProduct(id);
+      await MovieService.deleteMovie(id);
       alert("¡Registro eliminado con éxito!");
-      window.location.replace("/products");
+      window.location.replace("/movies");
     } catch (error) {
       alert("No se pudo eliminar el registro.");
       console.log(error);
@@ -29,14 +28,13 @@ export const ProductRow = ({ product }: Props) => {
     <tr>
       <th scope="row">{id}</th>
       <td>{title}</td>
-      <td>{currencyFormat(price)}</td>
-      <td>{description}</td>
-      <td>{category}</td>
-      <td>
-        <img className="grid-image" src={image} alt={title} />
+      <td>{year}</td>
+      <td>{type}</td>
+      <td className="text-center">
+        <img className="grid-image" src={poster} alt={title} />
       </td>
       <td>
-        <Link id={`md-${id}`} to={`/products/${id}`} className="btn" onClick={() => {}}>
+        <Link id={`md-${id}`} to={`/movies/${id}`} className="btn" onClick={() => {}}>
           <img src={imgModify} className="img-mant" alt="Eliminar" />
         </Link>
       </td>

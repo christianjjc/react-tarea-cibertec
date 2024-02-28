@@ -1,9 +1,10 @@
 import axios from "axios";
 import environment from "../../environments/environment.dev";
+//import { Product } from "../../interfaces";
 
-const API_URL = `${environment.apiUrl}/products`;
+const API_URL = `${environment.apiUrl}/movies`;
 
-export const addProduct = async (formData: FormData) => {
+export const addMovie = async (formData: FormData) => {
   const data = Object.fromEntries(formData);
   const product = data;
   try {

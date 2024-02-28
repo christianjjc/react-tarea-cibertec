@@ -4,4 +4,7 @@ export * from "./ui/Title";
 export * from "./ui/BtnGeneral";
 export * from "./products/ProductList";
 export * from "./products/ProductMant";
-export * from "./products/ui/ErrorMensaje";
+export * from "./ui/ErrorMensaje";
+export * from "./movies/MovieList";
+export * from "./movies/MovieRow";
+export * from "./movies/MovieMant";

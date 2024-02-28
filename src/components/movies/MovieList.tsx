@@ -1,25 +1,25 @@
 import { useEffect, useState } from "react";
-import { Product } from "../../interfaces";
-import { ProductService } from "../../services";
-import { ProductRow } from "./ProductRow";
+import { Movie } from "../../interfaces";
+import { MovieService } from "../../services";
+import { MovieRow } from "./MovieRow";
 import { BtnGeneral, Title } from "..";
 
-export const ProductList = () => {
-  const [products, setProducts] = useState<Product[]>([]);
+export const MovieList = () => {
+  const [movies, setMovies] = useState<Movie[]>([]);
   const [loaded, setLoaded] = useState(false);
 
-  async function cargaProductos() {
+  async function cargaMovies() {
     try {
-      const products = await ProductService.getProducts();
-      setProducts(products);
+      const movies = await MovieService.getMovies();
+      setMovies(movies);
       setLoaded(true);
     } catch (error) {
-      console.error("Error cargando productos:", error);
+      console.error("Error cargando elículas:", error);
     }
   }
 
   useEffect(() => {
-    cargaProductos();
+    cargaMovies();
   }, []);
 
   if (!loaded) {
@@ -37,12 +37,12 @@ export const ProductList = () => {
     <>
       <div className="row">
         <div className="col-12">
-          <Title titulo="Listado de Productos" subtitulo="En esta sección veremos la lista completa de productos." />
+          <Title titulo="Listado de Películas" subtitulo="En esta sección veremos la lista completa de películas." />
         </div>
       </div>
       <div className="row d-flex justify-content-end pb-3">
         <div className="col-12 col-sm-2">
-          <BtnGeneral href={"/products/new"} label={"Nuevo Producto"} />
+          <BtnGeneral href={"/movies/new"} label={"Nueva Película"} />
         </div>
       </div>
       <table className="table table-sm table-striped table-hover table-bordered table align-middle table-responsive">
@@ -50,17 +50,16 @@ export const ProductList = () => {
           <tr className="text-center ">
             <th scope="col">id</th>
             <th scope="col">title</th>
-            <th scope="col">price</th>
-            <th scope="col">description</th>
-            <th scope="col">category</th>
-            <th scope="col">image</th>
+            <th scope="col">Año</th>
+            <th scope="col">tipo</th>
+            <th scope="col">poster</th>
             <th scope="col">Modif</th>
             <th scope="col">Del</th>
           </tr>
         </thead>
         <tbody className="table-group-divider">
-          {products.map((p) => (
-            <ProductRow key={p.id + p.title} product={p} />
+          {movies.map((m) => (
+            <MovieRow key={m.id + m.title + m.year} movie={m} />
           ))}
         </tbody>
       </table>
