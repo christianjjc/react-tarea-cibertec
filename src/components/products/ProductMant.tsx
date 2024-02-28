@@ -4,7 +4,7 @@ import { Product } from "../../interfaces";
 import { ProductService } from "../../services";
 import { SubmitHandler, useForm } from "react-hook-form";
 import clsx from "clsx";
-import { ErrorMensaje } from "..";
+import { ErrorMensaje, Title } from "..";
 
 interface FormInputs {
   title: string;
@@ -86,28 +86,35 @@ export const ProductMant = () => {
         console.log({ error_modificar_prod_en_form: error });
       }
     }
+  };
 
-    /* 
-    const { ok, product: updatedProduct } = await createUpdateProduct(formData);
-    console.log(ok);
-
-    if (!ok) {
-      alert("El producto no se pudo actualizar");
-      return;
+  const handleEliminar = async (id: string, title: string) => {
+    const confirmar = confirm(`¿Seguro que desea eliminar el item ${title}?`);
+    if (!confirmar) return;
+    try {
+      await ProductService.deleteProduct(id);
+      alert("¡Registro eliminado con éxito!");
+      window.location.replace("/products");
+    } catch (error) {
+      alert("No se pudo eliminar el registro.");
+      console.log(error);
     }
-
-    router.replace(`/admin/product/${updatedProduct?.slug}`); */
   };
 
   return (
     <>
       <div className="row">
+        <div className="col-12">
+          <Title titulo="Mantenimiento de Productos" subtitulo="Aquí se modifica el producto." />
+        </div>
+      </div>
+      <div className="row d-flex my-5">
         <div className="col">
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="row">
-              <div>Producto id:{id}</div>
+              <span className="fs-4">Producto id: {id}</span>
               <div className="d-flex flex-column  my-2">
-                <span>Título:</span>
+                <span>Nombre:</span>
                 <input
                   type="text"
                   className={clsx("p-2 border rounded-md form-control ", {
@@ -174,9 +181,15 @@ export const ProductMant = () => {
             </div>
             <div className="d-flex gap-2 my-3">
               <button type="submit" className="btn btn-primary">
-                Guardar
+                {product ? "Modificar" : "Guardar"}
               </button>
-              <button className="btn btn-danger">Eliminar</button>
+              {product ? (
+                <button className="btn btn-danger" onClick={() => handleEliminar(id!, product.title)}>
+                  Eliminar
+                </button>
+              ) : (
+                ""
+              )}
               <Link className="btn btn-info" to={"/products"}>
                 Volver
               </Link>
@@ -184,7 +197,7 @@ export const ProductMant = () => {
           </form>
         </div>
         <div className="col">
-          <img className="img-fluid" src={product?.image} alt={product?.title} />
+          <img className="img-fluid img-form" src={product?.image} alt={product?.title} />
         </div>
       </div>
     </>

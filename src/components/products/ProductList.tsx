@@ -10,8 +10,8 @@ export const ProductList = () => {
 
   async function cargaProductos() {
     try {
-      const productos = await ProductService.getProducts();
-      setProducts(productos);
+      const products = await ProductService.getProducts();
+      setProducts(products);
       setLoaded(true);
     } catch (error) {
       console.error("Error cargando productos:", error);
@@ -54,7 +54,6 @@ export const ProductList = () => {
             <th scope="col">description</th>
             <th scope="col">category</th>
             <th scope="col">image</th>
-            <th scope="col">rating</th>
             <th scope="col">Modif</th>
             <th scope="col">Del</th>
           </tr>

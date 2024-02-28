@@ -15,10 +15,6 @@ export const ProductService = {
     return addProduct(formData);
   },
   updateProduct: (formData: FormData) => {
-    try {
-      return updateProduct(formData);
-    } catch (error) {
-      console.log({ error_servicio_modificar: error });
-    }
+    return updateProduct(formData);
   },
 };

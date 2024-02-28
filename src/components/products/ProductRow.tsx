@@ -3,7 +3,6 @@ import { Product } from "../../interfaces";
 import imgTrash from "/trash3.svg";
 import imgModify from "/modify-ico.png";
 import { ProductService } from "../../services";
-import React from "react";
 import { currencyFormat } from "../../utils";
 
 interface Props {
@@ -11,17 +10,15 @@ interface Props {
 }
 
 export const ProductRow = ({ product }: Props) => {
-  const { id, title, price, description, category, image, rating } = product;
+  const { id, title, price, description, category, image } = product;
 
-  const handleEliminar = async (id: string, title: string, e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+  const handleEliminar = async (id: string, title: string) => {
     const confirmar = confirm(`¿Seguro que desea eliminar el item ${title}?`);
-    if (!confirmar) {
-      e.preventDefault();
-      return;
-    }
+    if (!confirmar) return;
     try {
       await ProductService.deleteProduct(id);
       alert("¡Registro eliminado con éxito!");
+      window.location.replace("/products");
     } catch (error) {
       alert("No se pudo eliminar el registro.");
       console.log(error);
@@ -38,20 +35,15 @@ export const ProductRow = ({ product }: Props) => {
       <td>
         <img className="produt-image img-fluid " src={image} alt={title} />
       </td>
-      <td>{rating?.rate}</td>
       <td>
         <Link id={`md-${id}`} to={`/products/${id}`} className="btn" onClick={() => {}}>
           <img src={imgModify} className="img-mant" alt="Eliminar" />
         </Link>
       </td>
       <td className="text-dang">
-        <Link
-          id={`dl-${id}`}
-          to={`/products/`}
-          className="btn"
-          onClick={(e) => handleEliminar(id!.toString(), title, e)}>
+        <button id={`dl-${id}`} className="btn" onClick={() => handleEliminar(id!.toString(), title)}>
           <img src={imgTrash} className="img-mant" alt="Eliminar" />
-        </Link>
+        </button>
       </td>
     </tr>
   );

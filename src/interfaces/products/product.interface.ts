@@ -7,12 +7,6 @@ export interface Product {
   description: string;
   category: Category;
   image: string;
-  rating: Rating;
 }
 
 type Category = "electronics" | "jewelery" | "men's clothing" | "women's clothing" | "";
-
-interface Rating {
-  rate: number;
-  count: number;
-}
